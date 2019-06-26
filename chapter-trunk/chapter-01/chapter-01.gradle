@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'pers.lyks'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: "${springBootVersion}"
+
+}

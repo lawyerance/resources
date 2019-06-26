@@ -1,0 +1,76 @@
+buildscript {
+
+    repositories {
+        mavenLocal()
+
+        maven { url 'http://repo.spring.io/libs-milestone/' }
+
+        maven { url "http://repo.spring.io/release/" }
+
+        maven { url "https://plugins.gradle.org/m2/" }
+
+        maven { url "https://maven.aliyun.com/repository/public/" }
+
+        //jcenter()
+        maven { url "http://jcenter.bintray.com/" }
+
+        maven { url "https://mirrors.tuna.tsinghua.edu.cn/apache/" }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE"
+
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+    }
+
+}
+
+plugins {
+    id 'idea'
+    id 'eclipse'
+    id 'org.springframework.boot' version "2.1.2.RELEASE" apply false
+}
+
+group 'pers.lyks'
+version '1.0.0'
+
+allprojects {
+
+}
+
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    repositories {
+        mavenLocal()
+
+        maven { url 'http://repo.spring.io/libs-milestone/' }
+
+        maven { url "http://repo.spring.io/release/" }
+
+        maven { url "https://maven.aliyun.com/repository/public/" }
+
+        maven { url "https://mirrors.tuna.tsinghua.edu.cn/apache/" }
+
+        mavenCentral()
+    }
+
+    dependencies {
+        compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: "${springBootVersion}"
+        compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: "${springBootVersion}"
+        testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "${springBootVersion}"
+    }
+
+    if (name.endsWith("-web")) {
+        apply plugin: 'org.springframework.boot'
+
+        dependencies {
+            implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+            compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: "${springBootVersion}"
+        }
+    }
+}
