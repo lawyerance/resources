@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pers.lyks.chapter.unique.service.GeneratorService;
 
+import java.text.SimpleDateFormat;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -40,6 +41,8 @@ public class Application implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(Application.class, args);
     }
+
+    static final ThreadLocal<SimpleDateFormat> dateFormatThreadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 }
